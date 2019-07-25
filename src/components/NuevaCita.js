@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uuid from 'uuid';
 
 class NuevaCita extends Component {
     state = { 
@@ -15,12 +16,10 @@ class NuevaCita extends Component {
      //Cuando el usuario escribe en el formulario
 
      handleChange = e => {
-         console.log(e.target.name + ': ' + e.target.value);
-
          //colocar lo que el usuario escribre en el state
          this.setState({
              cita : {
-                ...this.state.cita,  //copeo el state
+                ...this.state.cita,  //copio el state
 
                  //Lo que esta en cita.mascora es sobre escrita por e.target.value 
                  [e.target.name] : e.target.value
@@ -46,8 +45,12 @@ class NuevaCita extends Component {
             return;
         }
 
+        //Generar objeto con los datos
+        const nuevaCita = {...this.state.cita};
+        nuevaCita.id = uuid();
 
         //Agregar la cita al state de App
+        this.props.crearNuevaCita(nuevaCita);
         
      }
 
