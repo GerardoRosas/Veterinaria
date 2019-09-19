@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import uuid from 'uuid';
+import PropTypes from 'prop-types';
 
 const stateInicial = { 
     cita : {
@@ -16,14 +17,13 @@ class NuevaCita extends Component {
     state = { ...stateInicial }
 
      //Cuando el usuario escribe en el formulario
-
      handleChange = e => {
          //colocar lo que el usuario escribre en el state
          this.setState({
              cita : {
-                ...this.state.cita,  //copio el state
+                ...this.state.cita,  //copio el state, para no afectar a los demas campos
 
-                 //Lo que esta en cita.mascora es sobre escrita por e.target.value 
+                 //Lo que esta en cita.mascota es sobre escrita por e.target.value 
                  [e.target.name] : e.target.value
              }
          })
@@ -146,13 +146,17 @@ class NuevaCita extends Component {
                         </div> {/*cierre de form group*/}
 
                         <input type="submit" className="py-3 mt-2 btn btn-success 
-                        btn-block" value="Agregar nueva Cita"></input>
+                        btn-block" value ="Agregar Nueva Cita"></input>
 
                     </form>
                 </div>
             </div>
          );
     }
+}
+
+NuevaCita.propTypes ={
+    crearNuevaCita : PropTypes.func.isRequired
 }
  
 export default NuevaCita;
